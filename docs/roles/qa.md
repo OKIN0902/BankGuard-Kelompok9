@@ -1,16 +1,21 @@
-# Quality assurance
+# Menguji aplikasi dan mencatat kesalahan
 
-Branch: `test/quality-assurance`
+**Branch:** `test/quality-assurance` · **Tugas:** [Issue #7](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/7)
 
-Baca [panduan kolaborasi](../../CONTRIBUTING.md) dan [kontrak](../contracts.md). Sinkronkan main. File: tests/, docs/test-report.md.
+## Mulai dari mana?
+Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: tests/, docs/test-report.md.
 
-## Tugas
-Uji delapan kombinasi skor, batas nominal/frekuensi, input invalid, autentikasi, persistensi, tiga VM serta browser perangkat lain. Catat expected vs actual.
+## Langkah kerja
+1. Buat pengujian delapan kombinasi skor: 0, 25, 35, 40, 60, 65, 75, 100.
+2. Uji batas: rata-rata Rp500.000, nominal Rp1.500.000 tidak menambah skor nominal; Rp1.500.001 menambah 35. Frekuensi 3 tidak menambah skor; 4 menambah 25.
+3. Uji input salah, login, dan apakah data tetap tersimpan setelah restart.
+4. Saat tiga VM siap, uji akses dari perangkat lain. Catat hasil yang diharapkan, hasil sebenarnya, dan kendala.
 
-Kasus skor: 0,25,35,40,60,65,75,100. Rata-rata 500000: nominal 1500000 tidak aktif, 1500001 aktif; frekuensi 3 tidak aktif, 4 aktif.
+## Hasil yang dikumpulkan
+File pengujian dan laporan lulus/gagal/belum diuji.
 
-## Selesai jika
-- [ ] Output sesuai kontrak
-- [ ] Uji aktual atau catat blocker
-- [ ] Commit, push, PR ke main dengan referensi Issue
-- [ ] Review ketua
+## Tanda tugas selesai
+- [ ] Hasil sesuai panduan teknis.
+- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
+- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
+- [ ] Ketua sudah memeriksa dan menyetujui.

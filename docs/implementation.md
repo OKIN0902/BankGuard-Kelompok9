@@ -1,5 +1,7 @@
-# Log implementasi
-Belum ada deployment terverifikasi.
+# Catatan pengerjaan
+Isi tabel ketika pekerjaan benar-benar dilakukan. Tulis apa yang dikerjakan, masalah yang muncul, cara mengatasinya dan bukti hasil. Jangan isi kredensial atau data pribadi.
 
-| Tanggal | Peran | Pekerjaan | Kendala/solusi | Bukti |
+Status: belum ada aplikasi yang terverifikasi terpasang pada VM.
+
+| Tanggal | Peran | Pekerjaan | Kendala dan solusi | Bukti |
 |---|---|---|---|---|
