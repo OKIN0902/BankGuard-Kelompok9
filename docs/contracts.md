@@ -1,43 +1,48 @@
-# Panduan teknis bersama v0.1 — sepakati sebelum membuat kode
+# Kontrak API BankGuard v0.2
+Kontrak ini adalah kesepakatan nama data dan alamat API supaya Vue, Flask dan SQLite bisa dibuat terpisah lalu disambungkan. Jangan mengubah nama tanpa koordinasi.
 
-Panduan ini memastikan kode backend (proses aplikasi), frontend (tampilan) dan database (penyimpanan) dapat disambungkan. Nama fungsi/field di bawah harus tetap sama.
-
-## 1. Data yang dimasukkan
-| Nama field | Arti | Format |
+## 1. Data transaksi JSON
+| Nama | Arti | Format |
 |---|---|---|
 | user_id | ID pengguna fiktif | string 1–64 karakter |
 | amount | Nominal transfer | integer rupiah 1–10^12 |
-| historical_average | Rata-rata transfer | integer rupiah 1–10^12 |
-| destination_new | Apakah tujuan baru? | boolean true/false |
-| transfers_10min | Jumlah transfer 10 menit, termasuk sekarang | integer 1–10^6 |
+| historical_average | Rata-rata transfer simulasi | integer rupiah 1–10^12 |
+| destination_new | Tujuan baru? | boolean true/false |
+| transfers_10min | Jumlah transfer termasuk sekarang | integer 1–10^6 |
 
-Riwayat diisi sebagai simulasi. Tolak tipe/nilai yang salah. Integer artinya bilangan bulat; boolean artinya ya/tidak.
+Integer = bilangan bulat; boolean = ya/tidak. Tolak angka berbentuk string, boolean sebagai angka, nilai di luar batas, field wajib hilang. Contoh POST /api/transactions:
+```json
+{"user_id":"USER-001","amount":10000000,"historical_average":500000,"destination_new":true,"transfers_10min":1}
+```
 
-## 2. Bagian skor (backend)
-Fungsi `risk_engine.score_transaction(amount, historical_average, destination_new, transfers_10min) -> dict` mengembalikan data berbentuk dictionary (pasangan nama dan nilai): score:int, level:str (RENDAH/SEDANG/TINGGI), reasons:list[str]. Reasons hanya memuat indikator aktif dalam urutan: Rekening tujuan baru, Nominal tidak biasa, Frekuensi tinggi. Input salah menimbulkan ValueError. Lebih dari 3 kali dan lebih dari 3 transfer berarti batas tepat 3 tidak mendapat tambahan skor.
+## 2. Skor dan database
+`backend.risk_engine.score_transaction(amount, historical_average, destination_new, transfers_10min) -> dict` mengembalikan score:int, level:str (RENDAH/SEDANG/TINGGI), reasons:list[str]. Urutan alasan aktif: Rekening tujuan baru (+40), Nominal tidak biasa (+35 jika >3 kali), Frekuensi tinggi (+25 jika >3 transfer). Batas tepat 3 tidak menambah skor; input salah ValueError.
 
-Contoh hasil: `{"score":75,"level":"TINGGI","reasons":["Rekening tujuan baru","Nominal tidak biasa"]}`.
+`backend.database.init_db(db_path)` membuat tabel tanpa menghapus data yang sudah ada.
+`save_transaction(db_path, transaction:dict)->str` menyimpan input, score, level, reasons, id UUID dan created_at UTC ISO, mengembalikan id.
+`list_transactions(db_path, limit=100)->list[dict]` paling baru dahulu; semua field dan id/created_at dikembalikan; reasons list, destination_new boolean. Gunakan parameter SQL, JSON untuk reasons, 0/1 untuk boolean di SQLite, commit dan close. Satu database per VM.
 
-## 3. Bagian penyimpanan (SQLite)
-- `database.init_db(db_path)`: menyiapkan tabel dan dapat dijalankan kembali tanpa menghapus data.
-- `save_transaction(db_path, transaction:dict)->str`: menyimpan seluruh input, score, level dan reasons, lalu mengembalikan ID unik UUID.
-- `list_transactions(db_path, limit=100)->list[dict]`: mengambil maksimal 100 transaksi secara default, paling baru dahulu.
+## 3. Alamat API
+Frontend selalu meminta alamat relatif /api/... (bukan IP/port tetap). Vite dan Nginx meneruskan /api ke Flask tanpa menghapus awalan /api. Tidak perlu CORS karena satu origin (alamat browser).
 
-Database juga menambahkan id dan created_at (waktu UTC ISO). Simpan reasons sebagai JSON dan boolean sebagai 0/1; gunakan parameter SQL (jangan gabungkan input langsung ke SQL), commit (simpan perubahan database) dan close (tutup koneksi). SQLite lokal tiap VM.
-
-## 4. Bagian aplikasi web
-`app.create_app(test_config=None)` membuat aplikasi Flask. Baca pengaturan dari environment (pengaturan lokal sistem): BANKGUARD_SECRET_KEY, BANKGUARD_DEMO_USER, BANKGUARD_DEMO_PASSWORD_HASH (Werkzeug), BANKGUARD_DB_PATH. Jika secret/hash kosong, jangan jalankan aplikasi. CSRF adalah perlindungan formulir dari permintaan palsu: gunakan token pada setiap POST. Session (catatan login) HttpOnly/SameSite=Lax, Secure pada HTTPS; periksa password dengan check_password_hash, session.clear saat login/logout. Dashboard/simulator wajib login.
-
-| Alamat dan metode | Nama endpoint Flask | Data/hasil |
+| Metode dan URL | Login? | Respons sukses |
 |---|---|---|
-| GET / | home | arahkan ke login/dashboard |
-| GET/POST /login | login | login.html; username,password,csrf_token; gagal 401 |
-| POST /logout | logout | csrf_token; arahkan login |
-| GET /dashboard | dashboard | dashboard.html; transactions, instance_name, total, high_count, medium_count, low_count (dari daftar yang tampil) |
-| GET/POST /simulator | simulator | simulator.html; input bagian 1, destination_new 0/1, csrf_token; salah 400; sukses simpan lalu arahkan dashboard |
-| GET /health | health | JSON status:ok, instance:hostname; 503 jika DB belum siap |
+| GET /api/health | Tidak | 200 {status:"ok", instance:"BankGuard-01"}; 503 jika DB belum siap |
+| GET /api/session | Tidak | 200 {authenticated:boolean, username:string/null, csrf_token:string, instance_name:string} |
+| POST /api/login | Tidak | 200 {authenticated:true, username:string, csrf_token:string, instance_name:string} |
+| POST /api/logout | Ya | 200 {authenticated:false, username:null, csrf_token:string, instance_name:string} |
+| GET /api/transactions | Ya | 200 {transactions:[], total:int, high_count:int, medium_count:int, low_count:int, instance_name:string} |
+| POST /api/transactions | Ya | 201 {transaction:{...record}} |
 
-GET untuk membuka halaman, POST untuk mengirim data. Semua template menerima instance_name, error, csrf_token. Gunakan url_for sesuai endpoint dan autoescape Jinja (melindungi tampilan HTML). Skor dihitung pada server, bukan browser.
+Login body JSON: {"username":"petugas","password":"<password demo lokal>"}. Setiap POST termasuk login/logout mengirim header X-CSRF-Token dari GET /api/session atau respons login/logout terbaru. GET session selalu dapat dipakai untuk mengambil token baru. Setelah login/logout, session.clear dan buat token baru. Gunakan hmac.compare_digest untuk pemeriksaan token. Session Flask lewat cookie HttpOnly, SameSite=Lax, Secure jika HTTPS; jangan simpan token sesi/password di localStorage. Aplikasi HTTP hanya untuk jaringan demo tepercaya, bukan internet publik. Password diverifikasi dengan Werkzeug check_password_hash. Semua respons API kesalahan JSON berbentuk {"error":"Pesan mudah dipahami"}; 400 input salah, 401 belum login/login gagal, 403 CSRF salah, 415 Content-Type bukan JSON untuk POST yang memerlukan body, 503 database belum siap. Jangan tampilkan stack trace. GET transaksi menghitung jumlah kategori dari maksimal 100 record yang ditampilkan.
 
-## 5. Menjalankan di VM
-Gunicorn Linux: `gunicorn --bind 0.0.0.0:8000 'bankguard.app:create_app()'`. Jalankan sebagai akun non-root, file environment hanya dapat dibaca pihak berwenang, secret berbeda tiap clone. Jangan gunakan data/password asli.
+Contoh respons analisis 201 (ID/waktu hanya contoh):
+```json
+{"transaction":{"id":"550e8400-e29b-41d4-a716-446655440000","created_at":"2026-01-01T00:00:00Z","user_id":"USER-001","amount":10000000,"historical_average":500000,"destination_new":true,"transfers_10min":1,"score":75,"level":"TINGGI","reasons":["Rekening tujuan baru","Nominal tidak biasa"]}}
+```
+
+## 4. Pengaturan backend
+`backend.app.create_app(test_config=None)` membaca BANKGUARD_SECRET_KEY, BANKGUARD_DEMO_USER, BANKGUARD_DEMO_PASSWORD_HASH, BANKGUARD_DB_PATH, BANKGUARD_COOKIE_SECURE (1 jika HTTPS, 0 untuk demo HTTP). Default DB lokal instance/bankguard.sqlite3; VM memakai /var/lib/bankguard/bankguard.sqlite3. Tanpa secret/hash gagal start dengan pesan aman. Test_config boleh menyediakan nilai uji. Gunicorn: `gunicorn --bind 127.0.0.1:8000 'backend.app:create_app()'`.
+
+## 5. Halaman Vue
+/login, /dashboard, /simulator melalui Vue Router. Ambil session saat membuka aplikasi; halaman privat perlu login dan API tetap memeriksa hak akses. Gunakan fetch melalui services/api.js, credentials same-origin, JSON body dan token CSRF. Saat mendapat 401, arahkan login; tampilkan kesalahan dengan aman. Frontend menampilkan data, tidak menentukan skor resmi. Untuk kerja paralel, contoh JSON di atas dapat digunakan sebagai data mock (contoh sementara, bukan hasil pengujian).

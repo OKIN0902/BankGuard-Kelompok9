@@ -1,21 +1,21 @@
 # Menyimpan dan membaca data transaksi
 
-**Branch:** `feature/database` · **Tugas:** [Issue #6](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/6)
+Branch: `feature/database` · [Issue #6](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/6)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: bankguard/database.py, bankguard/schema.sql.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: backend/database.py, backend/schema.sql.
 
 ## Langkah kerja
-1. Buat struktur tabel SQLite sesuai panduan teknis; SQLite menyimpan data dalam file lokal tiap VM.
-2. Buat fungsi menyiapkan database, menyimpan transaksi dan mengambil daftar transaksi. Persiapan boleh dijalankan ulang tanpa menghapus data.
-3. Gunakan parameter SQL (nilai input dipisah dari perintah SQL), ID unik UUID dan waktu UTC; simpan alasan sebagai JSON.
-4. Uji apakah transaksi yang tersimpan masih ada setelah aplikasi ditutup atau dijalankan ulang.
+1. Buat tabel SQLite sesuai kontrak API. SQLite menyimpan file database terpisah di setiap VM.
+2. Buat init_db, save_transaction dan list_transactions sesuai nama dan format di docs/contracts.md.
+3. Gunakan parameter SQL, UUID, waktu UTC dan JSON untuk alasan risiko; jangan masukkan input langsung ke SQL.
+4. Uji data tetap ada setelah restart dan hasil dapat dibaca oleh Flask.
 
 ## Hasil yang dikumpulkan
-Struktur tabel, fungsi Python dan bukti data tersimpan.
+database.py, schema.sql dan catatan pengujian.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.

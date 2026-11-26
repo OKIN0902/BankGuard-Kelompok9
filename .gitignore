@@ -247,3 +247,12 @@ __marimo__/
 .vscode/
 *.mp4
 *.mkv
+
+# Vue / Vite
+node_modules/
+.vite/
+frontend/dist/
+coverage/
+npm-debug.log*
+*.local
+# Jangan abaikan package-lock.json

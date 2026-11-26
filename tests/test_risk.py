@@ -1,1 +1,1 @@
-# TODO QA: all 8 scoring combinations and boundaries
+# TODO QA: impor backend.risk_engine dan uji 8 kombinasi skor serta batas.

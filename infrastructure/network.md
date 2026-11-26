@@ -1,4 +1,4 @@
 # Rencana jaringan
-Laptop host adalah laptop yang menjalankan VirtualBox. Guest adalah VM di dalamnya. NAT port forwarding meneruskan koneksi port host 8081, 8082, 8083 ke port 8000 di masing-masing guest.
+Laptop host menjalankan VirtualBox. Guest adalah VM di dalamnya. NAT port forwarding: 8081→80 BankGuard-01, 8082→80 BankGuard-02, 8083→80 BankGuard-03. Nginx port 80 menyajikan Vue dan /api diteruskan ke Gunicorn 127.0.0.1:8000. Jangan buka port 8000 ke jaringan.
 
-Awali dengan alamat 127.0.0.1 (hanya laptop sendiri). Untuk perangkat lain, gunakan IP LAN/VPN host yang sesuai dan batasi firewall. Jangan buka port router ke internet. Tailscale opsional untuk jaringan privat jarak jauh; cek izin dan kuota. Status: belum diuji.
+Awali bind 127.0.0.1 untuk uji laptop host. Untuk perangkat lain, gunakan IP LAN/VPN host yang sesuai dan firewall terbatas. Uji halaman dan /api/health pada URL yang sama. Tailscale opsional; cek kuota dan izin. Jangan buka port router internet. Belum diuji.

@@ -1,21 +1,21 @@
 # Menguji aplikasi dan mencatat kesalahan
 
-**Branch:** `test/quality-assurance` · **Tugas:** [Issue #7](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/7)
+Branch: `test/quality-assurance` · [Issue #7](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/7)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: tests/, docs/test-report.md.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: tests/, docs/test-report.md.
 
 ## Langkah kerja
-1. Buat pengujian delapan kombinasi skor: 0, 25, 35, 40, 60, 65, 75, 100.
-2. Uji batas: rata-rata Rp500.000, nominal Rp1.500.000 tidak menambah skor nominal; Rp1.500.001 menambah 35. Frekuensi 3 tidak menambah skor; 4 menambah 25.
-3. Uji input salah, login, dan apakah data tetap tersimpan setelah restart.
-4. Saat tiga VM siap, uji akses dari perangkat lain. Catat hasil yang diharapkan, hasil sebenarnya, dan kendala.
+1. Uji semua skor: 0,25,35,40,60,65,75,100. Nominal tepat 3 kali rata-rata dan frekuensi tepat 3 tidak menambah skor terkait.
+2. Uji API JSON: input salah 400, belum login 401, CSRF salah 403, login/logout, data tersimpan setelah restart.
+3. Uji frontend Vue, npm run build, tampilan HP, dan komunikasi /api melalui Nginx. Pastikan dashboard tidak bisa membaca data tanpa login.
+4. Uji ketiga VM dan akses browser dari perangkat lain. Catat hasil nyata, bukan hanya hasil yang diharapkan.
 
 ## Hasil yang dikumpulkan
-File pengujian dan laporan lulus/gagal/belum diuji.
+Tes Python dan laporan pengujian API, UI, jaringan.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.

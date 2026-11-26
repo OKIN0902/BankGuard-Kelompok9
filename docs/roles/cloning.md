@@ -1,21 +1,21 @@
-# Menggandakan VM menjadi tiga
+# Menggandakan satu VM menjadi tiga
 
-**Branch:** `infra/cloning` · **Tugas:** [Issue #3](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/3)
+Branch: `infra/cloning` · [Issue #3](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/3)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: infrastructure/clone.ps1, infrastructure/cloning.md.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: infrastructure/clone.ps1, infrastructure/cloning.md.
 
 ## Langkah kerja
-1. Siapkan langkah atau script PowerShell untuk menggandakan VM template yang sudah dimatikan.
-2. Gunakan Full Clone (salinan VM lengkap), bukan instal ulang, dan beri nama BankGuard-01, BankGuard-02, BankGuard-03.
-3. Buat alamat MAC, hostname (nama komputer), machine-id (identitas sistem) dan rahasia aplikasi yang berbeda pada setiap VM.
-4. Nyalakan ketiganya bersama ketua dan catat bukti bahwa semuanya berjalan.
+1. Tunggu aplikasi pada template selesai diuji. Matikan template sebelum Full Clone.
+2. Buat BankGuard-01, BankGuard-02 dan BankGuard-03 tanpa instal ulang. Gunakan MAC, hostname, machine-id dan bila ada SSH host keys yang berbeda.
+3. Buat secret, password hash dan database demo masing-masing; jangan membawa data uji pribadi dari template.
+4. Atur port host 8081, 8082, 8083 menuju port 80 guest. Nyalakan ketiganya dan buktikan aplikasi berjalan.
 
 ## Hasil yang dikumpulkan
-Script cloning, petunjuk penggunaan dan bukti tiga VM aktif.
+Script PowerShell, panduan dan bukti tiga VM aktif.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.

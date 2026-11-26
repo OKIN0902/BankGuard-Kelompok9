@@ -1,21 +1,21 @@
-# Membuat logika aplikasi dan skor risiko
+# Membuat API dan logika skor risiko
 
-**Branch:** `feature/backend` · **Tugas:** [Issue #4](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/4)
+Branch: `feature/backend` · [Issue #4](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/4)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: bankguard/app.py, bankguard/risk_engine.py.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: backend/app.py, backend/risk_engine.py.
 
 ## Langkah kerja
-1. Buat fungsi menghitung skor: rekening tujuan baru +40, nominal lebih dari 3 kali rata-rata +35, lebih dari 3 transfer dalam 10 menit +25.
-2. Periksa input pada server; tolak input yang salah. Contoh: 10 juta, rata-rata 500 ribu, tujuan baru, 1 transfer menghasilkan 75 (TINGGI).
-3. Buat halaman login/logout, jalur dashboard, simulator dan health (cek server), serta perlindungan CSRF untuk formulir POST.
-4. Hubungkan hasil analisis ke fungsi database dan halaman frontend sesuai nama fungsi dan data pada panduan teknis.
+1. Buat Flask REST API (alamat web yang menerima dan mengirim JSON) sesuai docs/contracts.md.
+2. Hitung skor tujuan baru +40, nominal >3 kali rata-rata +35, frekuensi >3 dalam 10 menit +25. Validasi input di server.
+3. Buat API session/login/logout, CSRF, daftar transaksi, analisis transaksi dan health. Gunakan cookie session; tidak perlu CORS karena frontend dan API satu alamat.
+4. Hubungkan ke fungsi database. Uji API sebelum dihubungkan dengan Vue.
 
 ## Hasil yang dikumpulkan
-Kode Python yang menghitung skor dan menjalankan alur aplikasi.
+app.py, risk_engine.py dan hasil uji API.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.

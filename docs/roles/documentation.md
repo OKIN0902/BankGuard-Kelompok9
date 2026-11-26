@@ -1,21 +1,21 @@
-# Menyiapkan dokumentasi dan presentasi
+# Menyiapkan PPT dan bukti demo
 
-**Branch:** `docs/presentation` · **Tugas:** [Issue #9](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/9)
+Branch: `docs/presentation` · [Issue #9](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/9)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: docs/implementation.md, docs/architecture.md, docs/demo-checklist.md.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: docs/architecture.md, docs/implementation.md, docs/demo-checklist.md.
 
 ## Langkah kerja
-1. Kumpulkan catatan proses, kendala dan solusi nyata dari anggota.
-2. Jelaskan perbedaan rancangan awal Cloud Functions/Firestore dengan prototype VM/Flask/SQLite lokal.
-3. Ambil bukti template, penggandaan, tiga VM aktif dan browser perangkat lain. Jangan membuat bukti palsu.
-4. Susun PPT/PDF maksimal 10 menit dan siapkan sesi tanya jawab 3–5 menit. Video cadangan opsional. Tutupi password/token.
+1. Catat perubahan dari Cloud Functions/Firestore menjadi Vue + Flask REST API + SQLite lokal per VM.
+2. Jelaskan Nginx menyajikan Vue dan meneruskan API ke Gunicorn. Dokumentasikan proses template dan full clone.
+3. Kumpulkan screenshot tiga VM aktif dan browser perangkat lain; contoh skor 75 TINGGI.
+4. Susun PPT/PDF maksimal 10 menit, tanya jawab 3–5 menit; video cadangan opsional. Sensor rahasia.
 
 ## Hasil yang dikumpulkan
-PPT/PDF, screenshot dan catatan demo; video jika dibuat.
+PPT/PDF, screenshot dan catatan nyata.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.

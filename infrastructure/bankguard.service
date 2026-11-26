@@ -1,1 +1,20 @@
-# TODO systemd unit; do not install yet
+# Contoh unit systemd. Aktifkan setelah kode lengkap dan environment unik tersedia.
+[Unit]
+Description=BankGuard Flask API
+After=network.target
+[Service]
+Type=simple
+User=bankguard
+Group=bankguard
+WorkingDirectory=/opt/bankguard
+EnvironmentFile=/etc/bankguard/bankguard.env
+ExecStart=/opt/bankguard/.venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 backend.app:create_app()
+Restart=on-failure
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+StateDirectory=bankguard
+ReadWritePaths=/var/lib/bankguard
+[Install]
+WantedBy=multi-user.target

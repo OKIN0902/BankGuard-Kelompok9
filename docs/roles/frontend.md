@@ -1,21 +1,22 @@
-# Membuat tampilan aplikasi di browser
+# Membuat tampilan Vue di browser
 
-**Branch:** `feature/frontend` · **Tugas:** [Issue #5](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/5)
+Branch: `feature/frontend` · [Issue #5](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/5)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: bankguard/templates/, bankguard/static/.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: frontend/.
 
 ## Langkah kerja
-1. Buat halaman masuk (login), halaman ringkasan transaksi (dashboard) dan formulir transaksi fiktif (simulator).
-2. Gunakan HTML, CSS, JavaScript bila perlu, dan Jinja (cara Flask mengisi data pada HTML). Ikuti nama field dan variabel pada panduan teknis.
-3. Tampilkan nama VM, skor, kategori dan alasan risiko. Buat tampilan nyaman di laptop dan HP.
-4. Uji tampilan bersama backend; jangan menjadikan perhitungan di browser sebagai hasil resmi.
+1. Instal Node.js 22.18+ (seri 22) dan npm. Dari frontend jalankan npm install lalu npm run dev.
+2. Gunakan Vue 3, Vite dan Bootstrap 5 yang sudah tercantum di package.json. Buat login, dashboard dan simulator dalam file .vue.
+3. Gunakan Vue Router dan services/api.js untuk meminta JSON dari /api. Tampilkan nama VM, skor, kategori, alasan, serta pesan ketika gagal atau menunggu.
+4. Gunakan CSRF token dari API dan cookie session; jangan menyimpan password/token sesi di localStorage. Skor resmi dihitung backend.
+5. Uji tampilan laptop/HP, jalankan npm run build dan commit package-lock.json; jangan commit node_modules atau dist.
 
 ## Hasil yang dikumpulkan
-Tiga halaman web dan file tampilan yang terhubung ke backend.
+Komponen Vue, halaman, service API dan build yang berhasil.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.

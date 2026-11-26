@@ -1,7 +1,5 @@
 # Catatan pengerjaan
-Isi tabel ketika pekerjaan benar-benar dilakukan. Tulis apa yang dikerjakan, masalah yang muncul, cara mengatasinya dan bukti hasil. Jangan isi kredensial atau data pribadi.
+Arsitektur telah disesuaikan menjadi Vue + Flask REST API. Build, konfigurasi VM dan aplikasi lengkap belum diuji. Catat pekerjaan yang benar-benar dilakukan tanpa rahasia.
 
-Status: belum ada aplikasi yang terverifikasi terpasang pada VM.
-
-| Tanggal | Peran | Pekerjaan | Kendala dan solusi | Bukti |
+| Tanggal | Peran | Pekerjaan | Kendala/solusi | Bukti |
 |---|---|---|---|---|

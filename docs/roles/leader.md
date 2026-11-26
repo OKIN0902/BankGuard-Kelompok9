@@ -1,21 +1,21 @@
 # Mengatur dan menyatukan pekerjaan kelompok
 
-**Branch:** `integration/leader` · **Tugas:** [Issue #1](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/1)
+Branch: `integration/leader` · [Issue #1](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/1)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: README.md, requirements.txt, docs/contracts.md.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: README.md, docs/contracts.md, backend/requirements.txt.
 
 ## Langkah kerja
-1. Pastikan semua anggota memahami tugas dan aturan nama fungsi/data pada panduan teknis.
-2. Periksa Pull Request (permintaan penggabungan kode) dari anggota; uji hasil database, backend, frontend dan pengujian bersama.
-3. Setelah aplikasi berjalan, pasang versi kode yang sama pada VM template. Catat kode identitas commit (SHA).
-4. Atur jadwal demo dan pastikan bukti tiga VM serta akses browser tersedia.
+1. Sepakati format API dengan tim frontend, backend dan database sebelum mulai coding.
+2. Periksa PR anggota, jalankan pengujian Python, npm install dan npm run build; simpan package-lock.json hasil instalasi yang diuji.
+3. Pasang frontend hasil build, backend, Nginx dan Gunicorn pada VM template. Catat commit yang dipakai.
+4. Koordinasikan pengujian tiga VM dan demo.
 
 ## Hasil yang dikumpulkan
-Aplikasi gabungan yang sudah diuji, catatan versi kode dan koordinasi demo.
+Catatan integrasi, versi kode dan hasil uji.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.

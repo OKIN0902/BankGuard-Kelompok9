@@ -1,21 +1,21 @@
-# Menghubungkan VM dengan browser perangkat lain
+# Membuka aplikasi dari perangkat lain
 
-**Branch:** `infra/network` · **Tugas:** [Issue #8](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/8)
+Branch: `infra/network` · [Issue #8](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/8)
 
 ## Mulai dari mana?
-Baca [cara menggunakan GitHub](../../CONTRIBUTING.md), lalu [panduan teknis](../contracts.md). Ambil pembaruan main ke branch sendiri. File yang dikerjakan: infrastructure/network.md.
+Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: infrastructure/network.md; koordinasi nginx.conf dengan tim setup.
 
 ## Langkah kerja
-1. Siapkan NAT port forwarding (meneruskan koneksi dari laptop host ke VM): port 8081, 8082, 8083 masing-masing ke port 8000 pada VM.
-2. Uji melalui localhost di laptop host, lalu melalui IP laptop host dari perangkat lain di jaringan lokal (LAN).
-3. Untuk jarak jauh, Tailscale boleh dipakai sebagai jaringan privat; periksa izin dan batas penggunaan. Batasi firewall ke jaringan yang diperlukan; jangan membuka port router ke internet.
-4. Catat hasil tiap URL dan bukti akses. Simpan alamat sensitif secara privat.
+1. Atur NAT port forwarding: host 8081,8082,8083 ke port 80 masing-masing VM (Nginx). Jangan buka port 8000 Gunicorn ke jaringan.
+2. Uji localhost, lalu IP host di LAN dari perangkat lain. Pastikan halaman Vue dan /api/health bekerja pada alamat yang sama.
+3. Untuk pengujian beda lokasi, Tailscale opsional; periksa kuota dan izin. Batasi Windows Firewall ke LAN/VPN yang digunakan, jangan membuka router ke internet.
+4. Dokumentasikan bukti tiap VM dan rencana demo di kelas tanpa VPN jika LAN memungkinkan.
 
 ## Hasil yang dikumpulkan
-Panduan jaringan dan bukti browser dapat membuka ketiga VM.
+Panduan jaringan dan bukti akses tiga VM.
 
-## Tanda tugas selesai
-- [ ] Hasil sesuai panduan teknis.
-- [ ] Sudah diuji dan dicatat hasilnya, atau tulis kendala yang mencegah pengujian.
-- [ ] Commit, push, dan buat Pull Request ke main; cantumkan Issue terkait.
-- [ ] Ketua sudah memeriksa dan menyetujui.
+## Tanda selesai
+- [ ] Hasil sesuai kontrak API dan sudah diperiksa.
+- [ ] Uji aktual dicatat, atau jelaskan jika belum bisa diuji.
+- [ ] Commit, push dan buat Pull Request ke main dengan referensi Issue.
+- [ ] Ketua memeriksa dan menyetujui.
