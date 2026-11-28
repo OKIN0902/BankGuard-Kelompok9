@@ -1,8 +1,19 @@
+<script setup>
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import Sidebar from './components/Sidebar.vue'
+import Navbar from './components/Navbar.vue'
+const route = useRoute()
+const menu = ref(false)
+</script>
 <template>
-  <main class="container py-4">
-    <h1 class="h3">BankGuard</h1>
-    <p class="text-muted">Kerangka frontend — belum terhubung ke backend.</p>
-    <nav class="nav mb-3"><RouterLink class="nav-link" to="/login">Login</RouterLink><RouterLink class="nav-link" to="/dashboard">Dashboard</RouterLink><RouterLink class="nav-link" to="/simulator">Simulator</RouterLink></nav>
-    <RouterView />
-  </main>
+  <RouterView v-if="route.path === '/login'" />
+  <div v-else class="app-shell">
+    <Sidebar :open="menu" @close="menu=false" />
+    <div class="workspace">
+      <Navbar @toggle="menu=!menu" />
+      <main class="content" id="main-content"><RouterView /></main>
+      <footer class="site-footer">BankGuard · Kelompok 3 · Praktikum Cloud Computing <span>Data simulasi, bukan transaksi bank nyata.</span></footer>
+    </div>
+  </div>
 </template>
