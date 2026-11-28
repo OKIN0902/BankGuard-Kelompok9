@@ -22,9 +22,9 @@ if ($BindIP -ne "127.0.0.1" -and -not (Get-NetIPAddress -AddressFamily IPv4 -IPA
   throw "IP tersebut tidak terpasang pada laptop host."
 }
 function Invoke-VBox {
-  param([Parameter(ValueFromRemainingArguments=$true)][string[]]$Arguments)
-  $output = & $VBoxManage @Arguments 2>&1
-  if ($LASTEXITCODE -ne 0) { throw "VBoxManage gagal: $($Arguments -join ' '): $output" }
+  $arguments = @($args)
+  $output = & $VBoxManage @arguments 2>&1
+  if ($LASTEXITCODE -ne 0) { throw "VBoxManage gagal: $($arguments -join ' '): $output" }
   return $output
 }
 $templateInfo = Invoke-VBox showvminfo $TemplateName --machinereadable

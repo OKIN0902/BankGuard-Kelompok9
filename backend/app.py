@@ -18,6 +18,9 @@ from .risk_engine import score_transaction
 def create_app(test_config=None):
     app = Flask(__name__)
     instance_name = socket.gethostname()
+    # Hostname Linux dibuat huruf kecil; tampilkan nama VM sesuai PRD.
+    known_names = {name.lower(): name for name in ('BankGuard-Template', 'BankGuard-01', 'BankGuard-02', 'BankGuard-03')}
+    instance_name = known_names.get(instance_name.lower(), instance_name)
     app.config.from_mapping(
         SECRET_KEY=os.environ.get("BANKGUARD_SECRET_KEY"),
         BANKGUARD_DEMO_USER=os.environ.get("BANKGUARD_DEMO_USER", "petugas"),
@@ -61,6 +64,8 @@ def create_app(test_config=None):
     @app.before_request
     def protect_post():
         if request.path.startswith("/api/") and request.method == "POST":
+            if request.path in ("/api/logout", "/api/transactions") and not session.get("username"):
+                return error("Silakan login terlebih dahulu.", 401)
             actual = request.headers.get("X-CSRF-Token", "")
             expected = session.get("csrf_token")
             if not expected or not hmac.compare_digest(actual.encode("utf-8"), expected.encode("utf-8")):

@@ -3,7 +3,7 @@
 # Jalankan melalui console VirtualBox. Script langsung mematikan VM.
 set -euo pipefail
 [[ $EUID -eq 0 ]] || { echo "Gunakan sudo."; exit 1; }
-[[ "$(hostname)" == BankGuard-Template ]] || { echo "Hanya boleh pada BankGuard-Template."; exit 1; }
+[[ "$(hostname | tr '[:upper:]' '[:lower:]')" == bankguard-template ]] || { echo "Hanya boleh pada BankGuard-Template."; exit 1; }
 [[ -f /opt/bankguard/backend/schema.sql && -f /opt/bankguard/frontend/dist/index.html ]] || exit 1
 read -r -p "Hapus data demo/rahasia dan matikan template? Ketik SIAP-CLONE: " answer
 [[ "$answer" == SIAP-CLONE ]] || { echo "Dibatalkan."; exit 1; }

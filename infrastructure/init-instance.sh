@@ -9,12 +9,16 @@ if [[ -e /etc/bankguard/bankguard.env ]]; then
   echo "Environment sudah ada. Tidak mengganti identitas/rahasia otomatis."
   exit 1
 fi
-hostnamectl set-hostname "$name"
+os_name="${name,,}"
+hostnamectl set-hostname "$os_name"
+if [[ -d /etc/cloud/cloud.cfg.d ]]; then
+  printf 'preserve_hostname: true\n' > /etc/cloud/cloud.cfg.d/99-bankguard-hostname.cfg
+fi
 # Ubuntu dapat memiliki alias 127.0.1.1 untuk hostname lama.
 if grep -qE '^127\.0\.1\.1[[:space:]]' /etc/hosts; then
-  sed -i -E "s/^127\.0\.1\.1[[:space:]].*/127.0.1.1 $name/" /etc/hosts
+  sed -i -E "s/^127\.0\.1\.1[[:space:]].*/127.0.1.1 $os_name/" /etc/hosts
 else
-  printf '\n127.0.1.1 %s\n' "$name" >> /etc/hosts
+  printf '\n127.0.1.1 %s\n' "$os_name" >> /etc/hosts
 fi
 # Template telah mengosongkan machine-id; systemd membuat identitas baru saat boot clone.
 if [[ ! -s /etc/machine-id ]]; then systemd-machine-id-setup; fi

@@ -28,6 +28,7 @@ def test_health_session(app):
     assert res.get_json()["authenticated"] is False
     assert "HttpOnly" in res.headers["Set-Cookie"] and "SameSite=Lax" in res.headers["Set-Cookie"]
     assert c.get("/api/transactions").status_code==401
+    assert c.post("/api/transactions",json=TX).status_code==401
 
 def test_login_csrf_logout(app):
     c=app.test_client()
