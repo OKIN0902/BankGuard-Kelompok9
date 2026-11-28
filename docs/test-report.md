@@ -1,16 +1,17 @@
 # Status pengujian implementasi referensi — 28 November 2026
-Pengujian lokal terhadap salinan file sumber yang SHA blob-nya cocok dengan GitHub: Python 3.13.5, SQLite 3.46.1, empat tes unittest lulus. Target deployment tetap Python 3.12 pada Ubuntu Server 24.04. Nginx -t berhasil dengan konfigurasi server yang sama dalam konfigurasi uji terisolasi; bash -n setup.sh berhasil. Tidak ada layanan VM yang dipasang/dijalankan oleh pengujian ini.
+**GitHub Actions: sukses.** [Lihat run dan log pengujian](https://github.com/OKIN0902/BankGuard-Perbankan/actions/runs/46107674584), commit kode yang diuji: 0fb3146dcae84812a7d917a98768c11c3fc41752.
 
-| Uji | Target | Status aktual |
-|---|---|---|
-| Risk engine | 8 skor, batas, input salah, skor contoh 75 | Lulus 3 tes unittest (termasuk subtes) |
-| SQLite | persistensi, satu tabel, parameter SQL, UUID, pengurutan | Lulus 1 tes unittest |
-| Nginx | sintaks konfigurasi | Lulus nginx -t terisolasi; routing runtime belum diuji |
-| setup.sh | sintaks Bash | Lulus bash -n; instalasi belum diuji |
-| Flask API | login/session/CSRF, 400/401/403/415/503, simpan data | Tes disediakan, belum dijalankan lokal (Flask tidak tersedia) |
-| Vue | npm run build, login/dashboard/simulator | Belum diuji build/browser (registry npm tidak dapat diakses) |
-| Nginx/Gunicorn | /api/health dan UI melalui port 80 | Belum diuji pada VM |
-| Full Clone | 3 VM, identitas unik, tanpa instal ulang | Belum diuji (VirtualBox/PowerShell tidak tersedia) |
-| Jaringan | akses browser dari perangkat lain | Belum diuji |
+| Uji | Status aktual |
+|---|---|
+| Python 3.12 / pytest | Lulus: 18 tes dan 17 subtes, termasuk 8 kombinasi skor, batas, validasi, skor contoh 75, autentikasi, CSRF, persistensi, dan database tidak siap |
+| Vue/Vite | npm install dan npm run build berhasil; Vite 7.3.8, 35 modul; belum diuji browser secara langsung |
+| Bash | bash -n setup.sh, init-instance.sh, prepare-template.sh lulus |
+| PowerShell | Parser clone.ps1 lulus; belum menjalankan VirtualBox |
+| Nginx | nginx -t lokal dalam konfigurasi uji terisolasi lulus; routing runtime belum diuji |
+| Nginx/Gunicorn pada VM | Belum diuji |
+| Full Clone | Belum diuji pada VirtualBox; tiga VM, identitas unik dan akses browser perlu bukti asli |
+| Jaringan | Belum diuji dari perangkat lain |
 
-Lingkungan pembuat tidak dapat mengunduh paket Python/npm. Lockfile npm belum dibuat. Jalankan pytest dan npm install/npm run build pada laptop atau CI dengan akses dependensi. Isi hasil aktual dan bukti setelah menjalankan perintah pada README/deployment.md. Jangan unggah kredensial, data asli atau file VM. PRD bukan bukti bahwa demo sudah lulus.
+Pengujian lokal tambahan terhadap salinan file sumber dengan SHA blob yang cocok: Python 3.13.5, SQLite 3.46.1, 4 tes unittest lulus. Lingkungan pembuat tidak dapat mengunduh paket, tetapi GitHub Actions dapat menjalankan instalasi dan build pada Ubuntu 24.04. Workflow memberi peringatan deprecation Node.js 20 pada versi action lama; tidak ada kegagalan tes. Lockfile npm belum disimpan; buat dan commit setelah tim memilih versi yang akan dipakai. Build CI tidak menyimpan dist sebagai artefak, jadi jalankan npm run build untuk deployment.
+
+Isi bukti runtime pada docs/demo-checklist.md setelah menjalankan panduan deployment. Jangan unggah kredensial, data asli, atau file VM. Aplikasi adalah simulasi akademik dan tidak membuktikan kesiapan sistem bank produksi.
