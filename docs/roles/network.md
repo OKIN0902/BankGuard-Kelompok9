@@ -1,6 +1,6 @@
 # Membuka aplikasi dari perangkat lain
 
-Branch: `infra/network` · [Issue #8](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/8)
+Branch: `infra/network` · [Issue #8](https://github.com/OKIN0902/BankGuard-Perbankan/issues/8)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: infrastructure/network.md; koordinasi nginx.conf dengan tim setup.

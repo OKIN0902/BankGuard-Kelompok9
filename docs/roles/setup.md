@@ -1,6 +1,6 @@
 # Menyiapkan Ubuntu dan server aplikasi
 
-Branch: `infra/setup` · [Issue #2](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/2)
+Branch: `infra/setup` · [Issue #2](https://github.com/OKIN0902/BankGuard-Perbankan/issues/2)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: infrastructure/setup.sh, infrastructure/bankguard.service, infrastructure/nginx.conf, infrastructure/deployment.md.

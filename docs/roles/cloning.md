@@ -1,6 +1,6 @@
 # Menggandakan satu VM menjadi tiga
 
-Branch: `infra/cloning` · [Issue #3](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/3)
+Branch: `infra/cloning` · [Issue #3](https://github.com/OKIN0902/BankGuard-Perbankan/issues/3)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: infrastructure/clone.ps1, infrastructure/cloning.md.

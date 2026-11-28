@@ -1,6 +1,6 @@
 # Menyimpan dan membaca data transaksi
 
-Branch: `feature/database` · [Issue #6](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/6)
+Branch: `feature/database` · [Issue #6](https://github.com/OKIN0902/BankGuard-Perbankan/issues/6)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: backend/database.py, backend/schema.sql.

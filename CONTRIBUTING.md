@@ -3,7 +3,7 @@ Repository = folder bersama. Branch = ruang kerja peran. Commit = simpan catatan
 
 ## Pertama kali
 1. Terima undangan GitHub, instal GitHub Desktop dan VS Code. Tim Vue instal Node.js seri 22 minimal 22.18; tim Python/QA instal Python 3.12. Hanya tim infrastruktur perlu VM.
-2. GitHub Desktop → File → Clone repository → pilih BankGuard-Kelompok9. Repository → Open in Visual Studio Code.
+2. GitHub Desktop → File → Clone repository → pilih BankGuard-Perbankan. Repository → Open in Visual Studio Code.
 3. Pilih branch peran yang sudah ada. Baca Issue dan kontrak API sebelum menulis kode.
 4. Jika sudah clone sebelumnya, ambil perubahan terbaru. Simpan pekerjaan sendiri dahulu; jangan hapus file hasil kerja tanpa koordinasi.
 

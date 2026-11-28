@@ -1,6 +1,6 @@
 # Membuat tampilan Vue di browser
 
-Branch: `feature/frontend` · [Issue #5](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/5)
+Branch: `feature/frontend` · [Issue #5](https://github.com/OKIN0902/BankGuard-Perbankan/issues/5)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: frontend/.

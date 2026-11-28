@@ -1,6 +1,6 @@
 # Menyiapkan PPT dan bukti demo
 
-Branch: `docs/presentation` · [Issue #9](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/9)
+Branch: `docs/presentation` · [Issue #9](https://github.com/OKIN0902/BankGuard-Perbankan/issues/9)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: docs/architecture.md, docs/implementation.md, docs/demo-checklist.md.

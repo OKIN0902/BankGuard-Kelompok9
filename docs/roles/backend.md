@@ -1,6 +1,6 @@
 # Membuat API dan logika skor risiko
 
-Branch: `feature/backend` · [Issue #4](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/4)
+Branch: `feature/backend` · [Issue #4](https://github.com/OKIN0902/BankGuard-Perbankan/issues/4)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: backend/app.py, backend/risk_engine.py.

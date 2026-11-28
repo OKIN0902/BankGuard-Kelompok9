@@ -1,6 +1,6 @@
 # Menguji aplikasi dan mencatat kesalahan
 
-Branch: `test/quality-assurance` · [Issue #7](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/7)
+Branch: `test/quality-assurance` · [Issue #7](https://github.com/OKIN0902/BankGuard-Perbankan/issues/7)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: tests/, docs/test-report.md.

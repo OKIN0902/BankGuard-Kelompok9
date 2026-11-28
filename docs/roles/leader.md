@@ -1,6 +1,6 @@
 # Mengatur dan menyatukan pekerjaan kelompok
 
-Branch: `integration/leader` · [Issue #1](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/1)
+Branch: `integration/leader` · [Issue #1](https://github.com/OKIN0902/BankGuard-Perbankan/issues/1)
 
 ## Mulai dari mana?
 Baca [cara kolaborasi](../../CONTRIBUTING.md) dan [kontrak API](../contracts.md). Ambil perubahan main ke branch sendiri. File yang dikerjakan: README.md, docs/contracts.md, backend/requirements.txt.

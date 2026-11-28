@@ -1,4 +1,4 @@
-# BankGuard — Kelompok 9
+# BankGuard — Kelompok 3
 
 BankGuard adalah prototype akademik Cloud Computing untuk memeriksa transaksi transfer fiktif dan menampilkan peringatan risiko kepada petugas. Skor bukan bukti penipuan; tidak ada pemblokiran rekening.
 
@@ -50,15 +50,15 @@ Set pengaturan lokal sesuai [kontrak API](docs/contracts.md), kemudian setelah b
 
 | Tugas | Branch | Panduan |
 |---|---|---|
-| Mengatur dan menyatukan pekerjaan kelompok | `integration/leader` | [Panduan](docs/roles/leader.md) · [Issue #1](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/1) |
-| Menyiapkan Ubuntu dan server aplikasi | `infra/setup` | [Panduan](docs/roles/setup.md) · [Issue #2](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/2) |
-| Menggandakan satu VM menjadi tiga | `infra/cloning` | [Panduan](docs/roles/cloning.md) · [Issue #3](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/3) |
-| Membuat API dan logika skor risiko | `feature/backend` | [Panduan](docs/roles/backend.md) · [Issue #4](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/4) |
-| Membuat tampilan Vue di browser | `feature/frontend` | [Panduan](docs/roles/frontend.md) · [Issue #5](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/5) |
-| Menyimpan dan membaca data transaksi | `feature/database` | [Panduan](docs/roles/database.md) · [Issue #6](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/6) |
-| Menguji aplikasi dan mencatat kesalahan | `test/quality-assurance` | [Panduan](docs/roles/qa.md) · [Issue #7](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/7) |
-| Membuka aplikasi dari perangkat lain | `infra/network` | [Panduan](docs/roles/network.md) · [Issue #8](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/8) |
-| Menyiapkan PPT dan bukti demo | `docs/presentation` | [Panduan](docs/roles/documentation.md) · [Issue #9](https://github.com/OKIN0902/BankGuard-Kelompok9/issues/9) |
+| Mengatur dan menyatukan pekerjaan kelompok | `integration/leader` | [Panduan](docs/roles/leader.md) · [Issue #1](https://github.com/OKIN0902/BankGuard-Perbankan/issues/1) |
+| Menyiapkan Ubuntu dan server aplikasi | `infra/setup` | [Panduan](docs/roles/setup.md) · [Issue #2](https://github.com/OKIN0902/BankGuard-Perbankan/issues/2) |
+| Menggandakan satu VM menjadi tiga | `infra/cloning` | [Panduan](docs/roles/cloning.md) · [Issue #3](https://github.com/OKIN0902/BankGuard-Perbankan/issues/3) |
+| Membuat API dan logika skor risiko | `feature/backend` | [Panduan](docs/roles/backend.md) · [Issue #4](https://github.com/OKIN0902/BankGuard-Perbankan/issues/4) |
+| Membuat tampilan Vue di browser | `feature/frontend` | [Panduan](docs/roles/frontend.md) · [Issue #5](https://github.com/OKIN0902/BankGuard-Perbankan/issues/5) |
+| Menyimpan dan membaca data transaksi | `feature/database` | [Panduan](docs/roles/database.md) · [Issue #6](https://github.com/OKIN0902/BankGuard-Perbankan/issues/6) |
+| Menguji aplikasi dan mencatat kesalahan | `test/quality-assurance` | [Panduan](docs/roles/qa.md) · [Issue #7](https://github.com/OKIN0902/BankGuard-Perbankan/issues/7) |
+| Membuka aplikasi dari perangkat lain | `infra/network` | [Panduan](docs/roles/network.md) · [Issue #8](https://github.com/OKIN0902/BankGuard-Perbankan/issues/8) |
+| Menyiapkan PPT dan bukti demo | `docs/presentation` | [Panduan](docs/roles/documentation.md) · [Issue #9](https://github.com/OKIN0902/BankGuard-Perbankan/issues/9) |
 
 ## Demo
 Host localhost:8081/8082/8083 → Nginx port 80 pada setiap VM. [Panduan pemasangan](infrastructure/deployment.md) dan [checklist demo](docs/demo-checklist.md). Jangan unggah kredensial, database, file VM, data pribadi, node_modules atau dist. Matikan VM setelah demo.
