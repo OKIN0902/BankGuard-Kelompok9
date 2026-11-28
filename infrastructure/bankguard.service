@@ -1,4 +1,3 @@
-# Contoh unit systemd. Aktifkan setelah kode lengkap dan environment unik tersedia.
 [Unit]
 Description=BankGuard Flask API
 After=network.target
@@ -8,13 +7,16 @@ User=bankguard
 Group=bankguard
 WorkingDirectory=/opt/bankguard
 EnvironmentFile=/etc/bankguard/bankguard.env
-ExecStart=/opt/bankguard/.venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 backend.app:create_app()
+ExecStart=/opt/bankguard/.venv/bin/gunicorn --preload --workers 2 --bind 127.0.0.1:8000 backend.app:create_app()
 Restart=on-failure
+RestartSec=3
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
 StateDirectory=bankguard
+StateDirectoryMode=0750
 ReadWritePaths=/var/lib/bankguard
+UMask=0027
 [Install]
 WantedBy=multi-user.target

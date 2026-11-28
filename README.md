@@ -1,64 +1,49 @@
-# BankGuard — Kelompok 3
+# BankGuard — Kelompok 3 · Perbankan
 
-BankGuard adalah prototype akademik Cloud Computing untuk memeriksa transaksi transfer fiktif dan menampilkan peringatan risiko kepada petugas. Skor bukan bukti penipuan; tidak ada pemblokiran rekening.
+Prototype akademik Cloud Computing untuk penilaian risiko transaksi fiktif. Branch ini adalah implementasi referensi berbantuan AI, terpisah dari main dan branch tugas anggota. Tidak ada transaksi bank nyata, blokir rekening, AI/ML, notifikasi eksternal atau database terpusat.
 
-## Target tugas
-Satu VM template Ubuntu Server dengan aplikasi BankGuard, tiga VM hasil Full Clone (salinan lengkap tanpa instal ulang), dan akses ketiganya melalui browser perangkat lain.
+## Fitur
+Login/logout petugas demo, dashboard transaksi terbaru (maksimal 100), statistik kategori dan distribusi risiko, simulator, skor resmi dari Flask, alasan risiko, penyimpanan SQLite satu tabel dan identitas VM. Vue 3 + Vite + Bootstrap 5 + Vue Router; Python 3.12 + Flask REST API; Nginx + Gunicorn; VirtualBox Ubuntu Server 24.04 LTS.
 
-## Teknologi yang digunakan
-| Alat | Kegunaan |
-|---|---|
-| Vue.js 3 | Membuat halaman web interaktif |
-| Vite | Menjalankan frontend saat pengembangan dan membuat file siap dipasang |
-| Bootstrap 5 | Membantu desain halaman |
-| Flask REST API (Python 3.12) | Memproses transaksi dan mengirim data JSON |
-| SQLite | Menyimpan transaksi pada masing-masing VM |
-| Nginx | Menyajikan frontend dan meneruskan permintaan API |
-| Gunicorn | Menjalankan Flask di Ubuntu |
-| VirtualBox + Ubuntu Server 24.04 LTS | Membuat template dan tiga VM |
-| GitHub | Kolaborasi remote |
+## Menjalankan di laptop (Windows)
+1. Instal Git, Python 3.12 dan Node.js seri 22 minimal 22.18.
+2. Clone dan pilih branch referensi:
 
-## Cara kerja
-Browser membuka Vue lewat Nginx (port 80), Vue meminta data melalui /api, Nginx meneruskan ke Gunicorn/Flask (127.0.0.1:8000), lalu Flask membaca/menyimpan data di SQLite. Setiap VM punya database sendiri, berbeda dari Firestore terpusat pada rancangan awal.
+       git clone -b prototype/full-implementation https://github.com/OKIN0902/BankGuard-Perbankan.git
+       cd BankGuard-Perbankan
+       py -3.12 -m venv .venv
+       .\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
+       .\.venv\Scripts\python.exe -m backend.local_demo
 
-## Aturan skor
-Tujuan baru +40; nominal lebih dari 3 kali rata-rata +35; lebih dari 3 transfer dalam 10 menit +25. RENDAH 0–39, SEDANG 40–59, TINGGI 60–100. Contoh Rp10 juta, rata-rata Rp500 ribu, tujuan baru, frekuensi 1 = 75 TINGGI. Semua data dan ambang hanya simulasi.
+   Buat password demo melalui prompt. Username petugas. Backend localhost:8000. Password/secret tidak di-commit, password hanya untuk demo lokal. Server ini untuk pengembangan, bukan produksi.
+3. Buka terminal kedua (root repository):
 
-## Mulai bekerja
-Baca [cara kolaborasi](CONTRIBUTING.md), [kontrak API](docs/contracts.md) dan panduan peran. Branch sudah dibuat; jangan push langsung ke main.
+       cd frontend
+       npm install
+       npm run dev
 
-Frontend: instal Node.js seri 22 minimal 22.18, lalu dari folder frontend:
-```bash
-npm install
-npm run dev
-npm run build
-```
-Setelah dependensi diuji, commit package-lock.json dan gunakan npm ci untuk instalasi berikutnya. Server Vite pada 127.0.0.1:5173 meneruskan /api ke 127.0.0.1:8000.
+   Buka http://127.0.0.1:5173. Vite proxy /api ke Flask. Klik Simulator → Isi contoh demo → Analisis & simpan. Skor contoh 75 TINGGI. Untuk build jalankan npm run build. Lockfile belum dapat dibuat dari lingkungan ini karena akses registry diblokir; simpan lockfile hasil instalasi yang diuji sebelum penggunaan berulang.
 
-Backend (dari root proyek, Windows PowerShell):
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
-```
-Set pengaturan lokal sesuai [kontrak API](docs/contracts.md), kemudian setelah backend selesai:
-```powershell
-.\.venv\Scripts\python.exe -m flask --app backend.app:create_app run --host 127.0.0.1 --port 8000
-.\.venv\Scripts\python.exe -m pytest
-```
+## Pengujian
+Dari root (venv terpasang):
 
-**Status:** kerangka frontend, backend dan contoh konfigurasi infrastruktur. Aplikasi lengkap, build dan deployment belum teruji. Lihat Issues.
+    .\.venv\Scripts\python.exe -m pytest -q
 
-| Tugas | Branch | Panduan |
-|---|---|---|
-| Mengatur dan menyatukan pekerjaan kelompok | `integration/leader` | [Panduan](docs/roles/leader.md) · [Issue #1](https://github.com/OKIN0902/BankGuard-Perbankan/issues/1) |
-| Menyiapkan Ubuntu dan server aplikasi | `infra/setup` | [Panduan](docs/roles/setup.md) · [Issue #2](https://github.com/OKIN0902/BankGuard-Perbankan/issues/2) |
-| Menggandakan satu VM menjadi tiga | `infra/cloning` | [Panduan](docs/roles/cloning.md) · [Issue #3](https://github.com/OKIN0902/BankGuard-Perbankan/issues/3) |
-| Membuat API dan logika skor risiko | `feature/backend` | [Panduan](docs/roles/backend.md) · [Issue #4](https://github.com/OKIN0902/BankGuard-Perbankan/issues/4) |
-| Membuat tampilan Vue di browser | `feature/frontend` | [Panduan](docs/roles/frontend.md) · [Issue #5](https://github.com/OKIN0902/BankGuard-Perbankan/issues/5) |
-| Menyimpan dan membaca data transaksi | `feature/database` | [Panduan](docs/roles/database.md) · [Issue #6](https://github.com/OKIN0902/BankGuard-Perbankan/issues/6) |
-| Menguji aplikasi dan mencatat kesalahan | `test/quality-assurance` | [Panduan](docs/roles/qa.md) · [Issue #7](https://github.com/OKIN0902/BankGuard-Perbankan/issues/7) |
-| Membuka aplikasi dari perangkat lain | `infra/network` | [Panduan](docs/roles/network.md) · [Issue #8](https://github.com/OKIN0902/BankGuard-Perbankan/issues/8) |
-| Menyiapkan PPT dan bukti demo | `docs/presentation` | [Panduan](docs/roles/documentation.md) · [Issue #9](https://github.com/OKIN0902/BankGuard-Perbankan/issues/9) |
+Tes scoring/database tanpa Flask/pytest juga dapat dijalankan dengan Python standar (SQLite dengan STRICT/JSON, seperti Ubuntu 24.04):
 
-## Demo
-Host localhost:8081/8082/8083 → Nginx port 80 pada setiap VM. [Panduan pemasangan](infrastructure/deployment.md) dan [checklist demo](docs/demo-checklist.md). Jangan unggah kredensial, database, file VM, data pribadi, node_modules atau dist. Matikan VM setelah demo.
+    python -m unittest discover -s tests -p test_risk.py
+    python -m unittest discover -s tests -p test_database.py
+
+Lihat docs/test-report.md untuk status aktual. Jangan menganggap tes lulus sebelum benar-benar dijalankan.
+
+## Deployment dan demo
+- [Kontrak API v0.2](docs/contracts.md) dan [ERD](docs/erd.md)
+- [Panduan instalasi Ubuntu](infrastructure/deployment.md)
+- [Full Clone](infrastructure/cloning.md) dan [jaringan](infrastructure/network.md)
+- [Checklist demo](docs/demo-checklist.md)
+
+Browser → Nginx port 80 (Vue dist) → /api → Gunicorn 127.0.0.1:8000 → Flask → SQLite lokal. Template diuji lalu disanitasi dan dimatikan sebelum clone. Tiga full clone: BankGuard-01/02/03, port host 8081/8082/8083 ke guest 80, setiap clone punya identitas dan secret baru.
+
+Aturan: tujuan baru +40; nominal >3 kali rata-rata +35; frekuensi >3 dalam 10 menit +25. RENDAH 0–39, SEDANG 40–59, TINGGI 60–100. Skor bukan bukti penipuan. Riwayat/frekuensi adalah input manual fiktif. HTTP hanya untuk jaringan demo tepercaya.
+
+Deadline kelompok 30 November 2026, 23.59 WIB. [Issues anggota](https://github.com/OKIN0902/BankGuard-Perbankan/issues) tetap terpisah; jangan merge referensi tanpa review ketua.
